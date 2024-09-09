@@ -4,6 +4,7 @@ using MagicVilla_API.Datos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MagicVillaAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240909030733_AgregarNumeroVillaTabla")]
+    partial class AgregarNumeroVillaTabla
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +66,7 @@ namespace MagicVillaAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Villas");
+                    b.ToTable("Villa");
 
                     b.HasData(
                         new
@@ -71,8 +74,8 @@ namespace MagicVillaAPI.Migrations
                             Id = 1,
                             Amenidad = "",
                             Detalle = "Detalle de la Villa...",
-                            FechaActualizacion = new DateTime(2024, 9, 9, 0, 17, 50, 976, DateTimeKind.Local).AddTicks(4623),
-                            FechaCreacion = new DateTime(2024, 9, 9, 0, 17, 50, 976, DateTimeKind.Local).AddTicks(4609),
+                            FechaActualizacion = new DateTime(2024, 9, 9, 0, 7, 33, 673, DateTimeKind.Local).AddTicks(1013),
+                            FechaCreacion = new DateTime(2024, 9, 9, 0, 7, 33, 673, DateTimeKind.Local).AddTicks(952),
                             ImagenUrl = "",
                             MetrosCuadrados = 50,
                             Nombre = "Villa Real",
@@ -84,50 +87,14 @@ namespace MagicVillaAPI.Migrations
                             Id = 2,
                             Amenidad = "",
                             Detalle = "Detalle de la Villa...",
-                            FechaActualizacion = new DateTime(2024, 9, 9, 0, 17, 50, 976, DateTimeKind.Local).AddTicks(4625),
-                            FechaCreacion = new DateTime(2024, 9, 9, 0, 17, 50, 976, DateTimeKind.Local).AddTicks(4625),
+                            FechaActualizacion = new DateTime(2024, 9, 9, 0, 7, 33, 673, DateTimeKind.Local).AddTicks(1017),
+                            FechaCreacion = new DateTime(2024, 9, 9, 0, 7, 33, 673, DateTimeKind.Local).AddTicks(1016),
                             ImagenUrl = "",
                             MetrosCuadrados = 40,
                             Nombre = "Premium Vista a la Piscina",
                             Ocupantes = 4,
                             Tarifa = 150.0
                         });
-                });
-
-            modelBuilder.Entity("MagicVilla_API.Models.NumeroVilla", b =>
-                {
-                    b.Property<int>("VillaNro")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DetalleEspecial")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaActualizacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("VillaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("VillaNro");
-
-                    b.HasIndex("VillaId");
-
-                    b.ToTable("NumeroVillas");
-                });
-
-            modelBuilder.Entity("MagicVilla_API.Models.NumeroVilla", b =>
-                {
-                    b.HasOne("MagicVilla_API.Modelos.Villa", "Villa")
-                        .WithMany()
-                        .HasForeignKey("VillaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Villa");
                 });
 #pragma warning restore 612, 618
         }
